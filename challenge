@@ -1,0 +1,16 @@
+#import libaries:
+library(tidyverse)
+library(janitor)
+
+#read from the data
+surveyData<- read_csv("dir/anonymous-survey-responses.csv") %>% clean_names()
+head(surveyData)
+
+#
+chisq.test(surveyData$have_you_ever_taken_a_course_in_statistics, 
+           surveyData$do_you_have_any_previous_experience_with_programming)
+
+#let's visualize the difference
+ggplot(surveyData, aes(x = have_you_ever_taken_a_course_in_statistics, fill = do_you_have_any_previous_experience_with_programming)) + geom_bar(position = "dodge")
+
+#You can find this exercise on Anthony Reese' Kaggle page: https://www.kaggle.com/studentar/kernels?sortBy=voteCount&group=everyone&pageSize=20&userId=1300506&language=R
